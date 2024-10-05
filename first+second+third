@@ -139,3 +139,4 @@ int main() {
      std::cout << i << ' ' << value_probability(i, d, 1000) << ' ';
    }
 }
+// i love the smiths they are the best band ever existed 
