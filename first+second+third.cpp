@@ -30,20 +30,21 @@ class Dice: public General_Dice {
    std::default_random_engine reng;  // генератор случайных чисел
 };
 
-// Класс ThreeDicePool моделирует три кости, результат которых суммируется.
-// Для каждой кости используются отдельные seed значения для генератора случайных чисел.
 class ThreeDicePool : public General_Dice {
- public:
-   ThreeDicePool(unsigned max, unsigned seed_1, unsigned seed_2, unsigned seed_3) :
-     d1(max, seed_1), d2(max, seed_2), d3(max, seed_3) { }
+public:
+    
+    ThreeDicePool(General_Dice& dice1, General_Dice& dice2, General_Dice& dice3) 
+        : d1(dice1), d2(dice2), d3(dice3) {}
 
-   // Метод roll возвращает сумму бросков трёх костей.
-   unsigned roll() override {
-       return d1.roll() + d2.roll() + d3.roll();
-  }
+    // Метод roll возвращает сумму бросков трёх кубиков
+    unsigned roll() override {
+        return d1.roll() + d2.roll() + d3.roll();
+    }
 
- private:
-   Dice d1, d2, d3;  // три кости
+private:
+    General_Dice& d1; 
+    General_Dice& d2; 
+    General_Dice& d3;
 };
 
 // Класс PenaltyDice реализует логику штрафного броска.
